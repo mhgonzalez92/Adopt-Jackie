@@ -267,9 +267,9 @@
             <div class="absolute inset-0 z-10 flex flex-col justify-between p-2 sm:p-4 pt-1 sm:pt-2 pb-2 sm:pb-3 pointer-events-none">
                 <div class="w-full text-center pt-0 sm:pt-0 pointer-events-auto">
                     <h1 class="font-heading font-black text-3xl sm:text-5xl lg:text-7xl tracking-tight text-white uppercase drop-shadow-lg">
-                        ADOPT <span class="text-brand-pink underline decoration-brand-pink decoration-4 underline-offset-8">JACKIE</span>
+                        <span class="text-slate-300 [text-shadow:0_3px_10px_rgba(15,23,42,0.85),0_1px_4px_rgba(15,23,42,0.9)]">ADOPT</span> <span class="text-brand-pink underline decoration-brand-pink decoration-4 underline-offset-8 [text-shadow:0_3px_10px_rgba(15,23,42,0.85),0_1px_4px_rgba(15,23,42,0.9)]">JACKIE</span>
                     </h1>
-                    <p class="mt-1 text-xs sm:text-sm font-semibold tracking-widest text-gray-200 uppercase">
+                    <p id="hero-subtitle" class="mt-1 text-xs sm:text-sm font-semibold tracking-widest text-gray-200 uppercase">
                         3 YR • 50LBS • SPAYED STAFFY • NEW YORK CITY
                     </p>
                 </div>
@@ -671,6 +671,17 @@
                     dot.classList.add('bg-white/40');
                 }
             });
+
+            const heroSubtitle = document.getElementById('hero-subtitle');
+            if (heroSubtitle) {
+                if (currentSlideIndex === 0) {
+                    heroSubtitle.classList.add('text-gray-200');
+                    heroSubtitle.classList.remove('text-black');
+                } else {
+                    heroSubtitle.classList.add('text-black');
+                    heroSubtitle.classList.remove('text-gray-200');
+                }
+            }
         }
 
         function nextSlide() {
