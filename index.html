@@ -1,861 +1,195 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adopt Jackie - Forever Home</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            dark: '#f8fafc',
-                            surface: '#ffffff',
-                            card: '#ffffff',
-                            border: '#e2e8f0',
-                            pink: '#ec4899', // Vibrant pink accent
-                            pinkHover: '#db2777',
-                            muted: '#64748b',
-                            darkText: '#0f172a'
-                        }
-                    },
-                    fontFamily: {
-                        heading: ['Montserrat', 'sans-serif'],
-                        body: ['Open Sans', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Website Template</title>
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+      --accent: #6366f1;
+    }
 
-    <style>
-        body {
-            background-color: #f8fafc;
-            color: #1e293b;
-            font-family: 'Open Sans', sans-serif;
-        }
+    [data-theme="light"] {
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --primary: #0284c7;
+      --accent: #4f46e5;
+    }
 
-        /* Base media scaling & transition styling */
-        .media-fit {
-            transform: scale(1.0);
-            transition: filter 0.4s ease, transform 0.4s ease;
-            object-fit: cover !important;
-        }
-        .media-fit:hover {
-            transform: scale(1.03);
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        /* First hero image fills the full screen container */
-        .media-fit-hero-first {
-            transform: scale(1.0);
-            transition: filter 0.4s ease, transform 0.4s ease;
-            object-fit: cover !important;
-            width: 100%;
-            height: 100%;
-        }
-        .media-fit-hero-first:hover {
-            transform: scale(1.03);
-        }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
 
-        /* Image & video vibrancy styling */
-        .media-vibrant {
-            filter: saturate(1.2) contrast(103%) brightness(1.02);
-        }
-        .media-vibrant:hover {
-            filter: saturate(1.35) contrast(105%) brightness(1.04);
-        }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        /* Device preview viewport wrapper styles */
-        .preview-wrapper {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            margin: 0 auto;
-        }
-        .view-mobile {
-            max-width: 390px !important;
-            border: 12px solid #ffffff;
-            border-radius: 40px;
-            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.08);
-            margin-top: 20px;
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-        .view-mobile .quick-highlights {
-            display: none !important;
-        }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
 
-        /* Force mobile sizes inside simulated mobile preview container */
-        .view-mobile .mobile-nav-item {
-            font-size: 8px !important;
-            padding: 2px 3px !important;
-            line-height: 1 !important;
-        }
-        .view-mobile .mobile-badge {
-            font-size: 8px !important;
-            bottom: 4.5rem !important;
-        }
-        .view-mobile .training-subtext {
-            font-size: 8px !important;
-            line-height: 1.1 !important;
-            max-width: 125px !important;
-        }
+    .theme-toggle {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f8fafc;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #ec4899;
-        }
-    </style>
+    .theme-toggle:hover {
+      border-color: var(--primary);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .card-body h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .card-body p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 4rem;
+    }
+  </style>
 </head>
-<body class="bg-brand-dark min-h-screen text-slate-800 antialiased selection:bg-brand-pink selection:text-white">
+<body>
 
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-brand-border py-2.5 px-4 shadow-sm">
-        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-            <!-- View Switcher Controls -->
-            <div class="flex items-center bg-slate-100 p-1 rounded-lg border border-brand-border">
-                <button id="btn-mobile" onclick="setPreviewMode('mobile')" 
-                        class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all bg-brand-pink text-white shadow">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                    </svg>
-                    <span>Mobile View</span>
-                </button>
-                <button id="btn-desktop" onclick="setPreviewMode('desktop')" 
-                        class="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all text-gray-500 hover:text-slate-900">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                    </svg>
-                    <span>Dashboard / Desktop</span>
-                </button>
-            </div>
+  <header>
+    <div class="logo">BrandName</div>
+    <button class="theme-toggle" id="themeBtn">Toggle Light Mode</button>
+  </header>
 
-            <button onclick="openFormModal()" 
-                    class="hidden sm:inline-flex items-center gap-2 bg-brand-pink hover:bg-brand-pinkHover text-white font-heading font-bold text-xs uppercase px-4 py-2 rounded-full transition transform hover:scale-105 active:scale-95 shadow-md">
-                <span>Apply To Adopt</span>
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-            </button>
+  <main>
+    <section class="hero">
+      <h1>Modern Web Site Template</h1>
+      <p>Clean layout built with HTML5, responsive CSS Grid, and lightweight JavaScript.</p>
+    </section>
+
+    <section class="gallery">
+      <div class="card">
+        <img src="img-2460.jpg" alt="Latest featured showcase image">
+        <div class="card-body">
+          <h3>Main Feature</h3>
+          <p>Updated image reference targeting <code>img-2460.jpg</code> directly within the root directory.</p>
         </div>
-    </header>
+      </div>
 
-    <div id="app-container" class="preview-wrapper view-mobile w-full max-w-7xl">
-        
-        <section class="relative w-full h-[75vh] min-h-[500px] max-h-[750px] bg-slate-100 overflow-hidden group">
-            
-            <!-- Media Carousel Track -->
-            <div id="carousel-track" class="flex w-full h-full transition-transform duration-500 ease-out">
-                <!-- Slide 1: New First Image -->
-                <div class="min-w-full h-full relative">
-                    <img src="IMG_2460.jpg" 
-                         alt="Jackie - Close Up Smile" 
-                         class="w-full h-full object-cover media-fit-hero-first media-vibrant">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent pointer-events-none"></div>
-                    <div class="mobile-badge absolute bottom-32 sm:bottom-24 left-4 sm:left-6 z-20 bg-slate-900/80 text-white font-heading font-semibold text-[4px] sm:text-xs px-2 py-0.5 sm:px-3.5 sm:py-1.5 rounded-full backdrop-blur-md border border-white/20 shadow-lg">
-                        Jackie • Curious & Loving
-                    </div>
-                </div>
-                <!-- Slide 2: Moved Original First Image -->
-                <div class="min-w-full h-full relative">
-                    <img src="IMG_3416.jpg" 
-                         alt="Jackie - Playful & Smiling Staffy" 
-                         class="w-full h-full object-cover media-fit media-vibrant">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent pointer-events-none"></div>
-                    <div class="mobile-badge absolute bottom-32 sm:bottom-24 left-4 sm:left-6 z-20 bg-slate-900/80 text-white font-heading font-semibold text-[4px] sm:text-xs px-2 py-0.5 sm:px-3.5 sm:py-1.5 rounded-full backdrop-blur-md border border-white/20 shadow-lg">
-                        Jackie • Playful & Smiling
-                    </div>
-                </div>
-                <!-- Slide 3: Image -->
-                <div class="min-w-full h-full relative">
-                    <img src="screenshot1.jpg" 
-                         alt="Jackie - Happy on Grass" 
-                         class="w-full h-full object-cover media-fit">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent pointer-events-none"></div>
-                    <div class="mobile-badge absolute bottom-32 sm:bottom-24 left-4 sm:left-6 z-20 bg-slate-900/80 text-white font-heading font-semibold text-[4px] sm:text-xs px-2 py-0.5 sm:px-3.5 sm:py-1.5 rounded-full backdrop-blur-md border border-white/20 shadow-lg">
-                        Jackie • Big Staffy Smile in the Grass
-                    </div>
-                </div>
-                <!-- Slide 4: Image -->
-                <div class="min-w-full h-full relative">
-                    <img src="IMG_3381.jpg" 
-                         alt="Jackie - Gentle with Children" 
-                         class="w-full h-full object-cover media-fit">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent pointer-events-none"></div>
-                    <div class="mobile-badge absolute bottom-32 sm:bottom-24 left-4 sm:left-6 z-20 bg-slate-900/80 text-white font-heading font-semibold text-[4px] sm:text-xs px-2 py-0.5 sm:px-3.5 sm:py-1.5 rounded-full backdrop-blur-md border border-white/20 shadow-lg">
-                        Jackie • Gentle with Children
-                    </div>
-                </div>
-                <!-- Slide 5: Image -->
-                <div class="min-w-full h-full relative">
-                    <img src="IMG_3450.jpg" 
-                         alt="Jackie - Socializing at the Park" 
-                         class="w-full h-full object-cover media-fit">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent pointer-events-none"></div>
-                    <div class="mobile-badge absolute bottom-32 sm:bottom-24 left-4 sm:left-6 z-20 bg-slate-900/80 text-white font-heading font-semibold text-[4px] sm:text-xs px-2 py-0.5 sm:px-3.5 sm:py-1.5 rounded-full backdrop-blur-md border border-white/20 shadow-lg">
-                        Jackie • Socializing with Dog Friends
-                    </div>
-                </div>
-                <!-- Slide 6: Before Allergy Treatment -->
-                <div class="min-w-full h-full relative">
-                    <img src="IMG_3365.jpg" 
-                         alt="BEFORE Allergy Treatment" 
-                         class="w-full h-full object-cover media-fit">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent pointer-events-none"></div>
-                    <div class="mobile-badge absolute bottom-32 sm:bottom-24 left-4 sm:left-6 z-20 bg-red-600/90 text-white font-heading font-black text-[4px] sm:text-sm px-2 py-0.5 sm:px-3.5 sm:py-1.5 rounded-full uppercase tracking-wider shadow-lg backdrop-blur-md border border-red-400/40">
-                        BEFORE Allergy Treatment
-                    </div>
-                </div>
-                <!-- Slide 7: After Allergy Treatment -->
-                <div class="min-w-full h-full relative">
-                    <img src="IMG_3396.jpg" 
-                         alt="(1 Week) AFTER Allergy Treatment" 
-                         class="w-full h-full object-cover media-fit">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent pointer-events-none"></div>
-                    <div class="mobile-badge absolute bottom-32 sm:bottom-24 left-4 sm:left-6 z-20 bg-emerald-600/90 text-white font-heading font-black text-[4px] sm:text-sm px-2 py-0.5 sm:px-3.5 sm:py-1.5 rounded-full uppercase tracking-wider shadow-lg backdrop-blur-md border border-emerald-400/40">
-                        (1 Week) AFTER Allergy Treatment
-                    </div>
-                </div>
-                <!-- Slide 8: Video -->
-                <div class="min-w-full h-full relative">
-                    <video src="next_movie.mp4" 
-                           autoplay loop muted playsinline 
-                           class="w-full h-full object-cover media-fit"></video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent pointer-events-none"></div>
-                    <div class="mobile-badge absolute bottom-32 sm:bottom-24 left-4 sm:left-6 z-20 bg-slate-900/80 text-white font-heading font-semibold text-[4px] sm:text-xs px-2 py-0.5 sm:px-3.5 sm:py-1.5 rounded-full backdrop-blur-md border border-white/20 shadow-lg">
-                        Video • Park Walk
-                    </div>
-                </div>
-                <!-- Slide 9: Video -->
-                <div class="min-w-full h-full relative">
-                    <video src="tug_of_war_duck.mp4" 
-                           autoplay loop muted playsinline 
-                           class="w-full h-full object-cover media-fit"></video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent pointer-events-none"></div>
-                    <div class="mobile-badge absolute bottom-32 sm:bottom-24 left-4 sm:left-6 z-20 bg-slate-900/80 text-white font-heading font-semibold text-[4px] sm:text-xs px-2 py-0.5 sm:px-3.5 sm:py-1.5 rounded-full backdrop-blur-md border border-white/20 shadow-lg">
-                        Video • Tug-of-War Fun
-                    </div>
-                </div>
-            </div>
-
-            <button onclick="prevSlide()" aria-label="Previous Slide" 
-                    class="absolute left-3 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-brand-pink text-white p-3 rounded-full transition border border-white/20 backdrop-blur-sm">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
-            </button>
-            <button onclick="nextSlide()" aria-label="Next Slide" 
-                    class="absolute right-3 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-brand-pink text-white p-3 rounded-full transition border border-white/20 backdrop-blur-sm">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
-            </button>
-
-            <!-- Carousel Slide Indicators -->
-            <div class="absolute bottom-1.5 sm:bottom-2 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-                <button onclick="goToSlide(0)" class="slide-dot w-3 h-3 rounded-full bg-brand-pink transition-all" aria-label="Slide 1"></button>
-                <button onclick="goToSlide(1)" class="slide-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition-all" aria-label="Slide 2"></button>
-                <button onclick="goToSlide(2)" class="slide-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition-all" aria-label="Slide 3"></button>
-                <button onclick="goToSlide(3)" class="slide-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition-all" aria-label="Slide 4"></button>
-                <button onclick="goToSlide(4)" class="slide-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition-all" aria-label="Slide 5"></button>
-                <button onclick="goToSlide(5)" class="slide-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition-all" aria-label="Slide 6"></button>
-                <button onclick="goToSlide(6)" class="slide-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition-all" aria-label="Slide 7"></button>
-                <button onclick="goToSlide(7)" class="slide-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition-all" aria-label="Slide 8"></button>
-                <button onclick="goToSlide(8)" class="slide-dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition-all" aria-label="Slide 9"></button>
-            </div>
-
-            <!-- HERO OVERLAY CONTENT -->
-            <div class="absolute inset-0 z-10 flex flex-col justify-between p-2 sm:p-4 pt-1 sm:pt-2 pb-2 sm:pb-3 pointer-events-none">
-                <div class="w-full text-center pt-0 sm:pt-0 pointer-events-auto">
-                    <h1 class="font-heading font-black text-3xl sm:text-5xl lg:text-7xl tracking-tight text-white uppercase drop-shadow-lg">
-                        <span class="text-slate-300 [text-shadow:0_3px_10px_rgba(15,23,42,0.85),0_1px_4px_rgba(15,23,42,0.9)]">ADOPT</span> <span class="text-brand-pink [text-shadow:0_3px_10px_rgba(15,23,42,0.85),0_1px_4px_rgba(15,23,42,0.9)]">JACKIE</span>
-                    </h1>
-                    <p id="hero-subtitle" class="mt-1 text-xs sm:text-sm font-semibold tracking-widest text-gray-200 uppercase">
-                        3 YR • 50LBS • SPAYED STAFFY • NEW YORK CITY
-                    </p>
-                </div>
-
-                <nav class="w-full max-w-3xl mx-auto bg-white/95 backdrop-blur-lg rounded-xl sm:rounded-2xl border border-brand-border p-1.5 sm:p-3 shadow-xl pointer-events-auto mb-5 sm:mb-1">
-                    <div class="flex items-center justify-between w-full gap-0.5 sm:gap-2 text-center">
-                        <a href="#backstory" class="mobile-nav-item text-[8px] sm:text-sm font-heading font-bold text-slate-700 hover:text-brand-pink px-1 sm:px-2.5 py-1 sm:py-1.5 rounded transition uppercase whitespace-nowrap">Backstory</a>
-                        <a href="#care" class="mobile-nav-item text-[8px] sm:text-sm font-heading font-bold text-slate-700 hover:text-brand-pink px-1 sm:px-2.5 py-1 sm:py-1.5 rounded transition uppercase whitespace-nowrap">Care</a>
-                        <a href="#training" class="mobile-nav-item text-[8px] sm:text-sm font-heading font-bold text-slate-700 hover:text-brand-pink px-1 sm:px-2.5 py-1 sm:py-1.5 rounded transition uppercase whitespace-nowrap">Training</a>
-                        <a href="#support" class="mobile-nav-item text-[8px] sm:text-sm font-heading font-bold text-slate-700 hover:text-brand-pink px-1 sm:px-2.5 py-1 sm:py-1.5 rounded transition uppercase whitespace-nowrap">Supports</a>
-                        <a href="#home-pref" class="mobile-nav-item text-[8px] sm:text-sm font-heading font-bold text-slate-700 hover:text-brand-pink px-1 sm:px-2.5 py-1 sm:py-1.5 rounded transition uppercase whitespace-nowrap">Home</a>
-                        <button onclick="openFormModal()" class="mobile-nav-item bg-brand-pink hover:bg-brand-pinkHover text-white font-heading font-extrabold text-[8px] sm:text-sm uppercase px-2 sm:px-3.5 py-1 sm:py-1.5 rounded sm:rounded-xl transition shadow-md whitespace-nowrap">
-                            Apply
-                        </button>
-                    </div>
-                </nav>
-            </div>
-        </section>
-
-        <main class="max-w-4xl mx-auto px-4 py-8 sm:py-12 space-y-10 sm:space-y-14">
-
-            <!-- QUICK HIGHLIGHT CARDS -->
-            <div class="quick-highlights hidden sm:grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-                <div class="bg-white border border-brand-border p-4 rounded-2xl text-center shadow-sm">
-                    <span class="block font-heading font-black text-xl sm:text-2xl text-brand-pink">3 Yrs</span>
-                    <span class="text-xs text-gray-500 uppercase font-semibold">Estimated Age</span>
-                </div>
-                <div class="bg-white border border-brand-border p-4 rounded-2xl text-center shadow-sm">
-                    <span class="block font-heading font-black text-xl sm:text-2xl text-brand-pink">50 lbs</span>
-                    <span class="text-xs text-gray-500 uppercase font-semibold">Spayed Staffy</span>
-                </div>
-                <div class="bg-white border border-brand-border p-4 rounded-2xl text-center shadow-sm">
-                    <span class="block font-heading font-black text-xl sm:text-2xl text-brand-pink">Harlem, NYC</span>
-                    <span class="text-xs text-gray-500 uppercase font-semibold">Current Location</span>
-                </div>
-                <div class="bg-white border border-brand-border p-4 rounded-2xl text-center border-l-4 border-l-brand-pink shadow-sm">
-                    <span class="block font-heading font-black text-xl sm:text-2xl text-brand-pink">$0 Fee</span>
-                    <span class="text-xs text-gray-500 uppercase font-semibold">Adoption Fee</span>
-                </div>
-            </div>
-
-            <!-- BACKSTORY SECTION -->
-            <section id="backstory" class="bg-white border border-brand-border rounded-3xl p-6 sm:p-8 space-y-4 shadow-md relative overflow-hidden">
-                <div class="flex items-center gap-3">
-                    <div class="w-3 h-8 bg-brand-pink rounded-full"></div>
-                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight">Backstory</h2>
-                </div>
-                
-                <p class="text-slate-700 leading-relaxed text-base sm:text-lg">
-                    Jackie’s forever family will build her story with her as we know little about her past. Jackie, an (estimated) <strong class="text-brand-pink font-bold">3 year old, 50lb, spayed Staffy</strong>, is named after Jackie Robinson Park, where she was left by her previous owner in mid August, 2026.
-                </p>
-
-                <p class="text-slate-700 leading-relaxed">
-                    Despite that upheaval, Jackie has been <strong class="text-brand-pink font-bold">loving, playful, curious, snorty, and cuddly</strong> with all the people and dogs she meets. Jackie is always eager to make new friends and has won over the whole block in less than a week of walks!
-                </p>
-
-                <div class="bg-pink-50/60 border-l-4 border-brand-pink p-4 rounded-r-2xl space-y-2 my-4">
-                    <h3 class="font-heading font-bold text-pink-700 text-sm uppercase tracking-wider">The Perfect City Dog</h3>
-                    <p class="text-slate-700 text-sm sm:text-base">
-                        Despite all her eagerness, Jackie is <strong class="text-slate-900">mellow and unbothered by storms or loud noises</strong>–the perfect city dog! Jackie travels calmly in cars and metro trains.
-                    </p>
-                </div>
-
-                <div class="bg-pink-50/60 border-l-4 border-brand-pink p-4 rounded-r-2xl space-y-2 my-4">
-                    <h3 class="font-heading font-bold text-pink-700 text-sm uppercase tracking-wider">Great Fit For Active Homes</h3>
-                    <p class="text-slate-700 text-sm sm:text-base">
-                        Jackie would be a <strong class="text-slate-900">wonderful dog for an active home or a family</strong> invested in teaching pet responsibility. Though Jackie should be monitored for overstimulation and may need intervention to calm or settle, she <strong class="text-slate-900">plays well with children, and other dogs of all sizes</strong>, including her smaller foster sister. Jackie appears to be cat friendly (after observations from one weekend in a cat’s home).
-                    </p>
-                </div>
-            </section>
-
-            <section id="care" class="bg-white border border-brand-border rounded-3xl p-6 sm:p-8 space-y-5 shadow-md">
-                <div class="flex items-center gap-3">
-                    <div class="w-3 h-8 bg-brand-pink rounded-full"></div>
-                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight">Care Information & Medical History</h2>
-                </div>
-
-                <div class="bg-slate-50 border border-brand-border p-4 sm:p-5 rounded-2xl flex items-center justify-between">
-                    <div>
-                        <span class="text-xs uppercase font-bold text-slate-500 tracking-wider">Overall Health Status</span>
-                        <p class="font-heading font-black text-xl text-brand-pink uppercase">Overall Jackie is very healthy!</p>
-                    </div>
-                    <span class="text-2xl">🩺</span>
-                </div>
-
-                <ul class="space-y-3 text-slate-700">
-                    <li class="flex items-start gap-3">
-                        <span class="text-brand-pink font-bold mt-1">✓</span>
-                        <span><strong>Clear basic fecal and blood exams!</strong></span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="text-brand-pink font-bold mt-1">✓</span>
-                        <span><strong>Rabies & 5-way vaccines</strong> up to date (Aug, 15).</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="text-brand-pink font-bold mt-1">✓</span>
-                        <span><strong>Flea, tick and heartworm</strong> monthly preventative up to date.</span>
-                    </li>
-                </ul>
-
-                <div class="bg-pink-50/70 border border-brand-pink/30 rounded-2xl p-5 space-y-3">
-                    <h3 class="font-heading font-bold text-pink-700 uppercase tracking-wider flex items-center gap-2">
-                        <span>⚠️</span> Food & Skin Allergy Details
-                    </h3>
-                    <p class="text-sm sm:text-base text-slate-700 leading-relaxed">
-                        Jackie has food allergies that affect her skin, though the exact allergen source(s) is/are currently unknown. Jackie received several oral medications and injections and has recovered so quickly!
-                    </p>
-                    <div class="space-y-2 pt-2 border-t border-pink-200 text-sm">
-                        <p class="text-slate-800">
-                            • <strong class="text-slate-900">Prescription Diet:</strong> Jackie requires <span class="text-pink-700 font-semibold">Hill's prescription diet</span> to avoid further allergic reactions.
-                        </p>
-                        <p class="text-slate-800">
-                            • <strong class="text-slate-900">Allergy Medication:</strong> Jackie will likely require daily prescriptions (<span class="text-pink-700 font-semibold">Apoquel or Zenrelia</span>) or quarterly injections (<span class="text-pink-700 font-semibold">Cytopoint</span>) to avoid further allergic reactions.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="training" class="bg-white border border-brand-border rounded-3xl p-6 sm:p-8 space-y-6 shadow-md">
-                <div class="flex items-center justify-between gap-2">
-                    <div class="flex items-center gap-2 sm:gap-3">
-                        <div class="w-2.5 h-6 sm:w-3 sm:h-8 bg-brand-pink rounded-full shrink-0"></div>
-                        <h2 class="font-heading font-extrabold text-xl sm:text-3xl text-slate-900 uppercase tracking-tight">Training Progress</h2>
-                    </div>
-                    <span class="training-subtext text-[8px] sm:text-base leading-tight sm:leading-normal text-pink-600 italic font-semibold max-w-[125px] sm:max-w-none text-right sm:text-left shrink-0">*Return for regular progress updates!</span>
-                </div>
-
-                <p class="text-slate-700 leading-relaxed">
-                    Jackie’s housetraining is improving daily and she usually uses a pee pad on the rare occasion she relieves inside. These rare occasions are usually due to a change in her regular schedule. In her foster, Jackie very closely followed the <a href="https://www.youtube.com/watch?v=uVNFkQm2a1U&t=5s" target="_blank" rel="noopener noreferrer" class="text-brand-pink hover:underline font-semibold">3 days, 3 weeks, and 3 months rule for rehomed dogs</a>.
-                </p>
-
-                <div class="bg-slate-50 border border-brand-border rounded-2xl p-5 space-y-4">
-                    <h3 class="font-heading font-bold text-slate-900 text-base uppercase tracking-wider text-pink-600 flex items-center gap-2">
-                        <span>⏰</span> Jackie's Current Daily Routine
-                    </h3>
-                    <div class="flex flex-col gap-3 text-sm">
-                        <div class="bg-white p-3 rounded-xl border border-brand-border flex items-center gap-3 shadow-sm">
-                            <span class="font-heading font-bold text-brand-pink w-24 shrink-0">6:30 AM</span>
-                            <span class="text-slate-700">Breakfast & short walk</span>
-                        </div>
-                        <div class="bg-white p-3 rounded-xl border border-brand-border flex items-center gap-3 shadow-sm">
-                            <span class="font-heading font-bold text-brand-pink w-24 shrink-0">Midday</span>
-                            <span class="text-slate-700">Potty Break/Walk</span>
-                        </div>
-                        <div class="bg-white p-3 rounded-xl border border-brand-border flex items-center gap-3 shadow-sm">
-                            <span class="font-heading font-bold text-brand-pink w-24 shrink-0">6:00 PM</span>
-                            <span class="text-slate-700">Dinner, Meds, and Walk/Dog Park</span>
-                        </div>
-                        <div class="bg-white p-3 rounded-xl border border-brand-border flex items-center gap-3 shadow-sm">
-                            <span class="font-heading font-bold text-brand-pink w-24 shrink-0">9/10:00 PM</span>
-                            <span class="text-slate-700">Final potty break</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="space-y-4 text-slate-700 text-sm sm:text-base">
-                    <div class="p-4 bg-slate-50 rounded-2xl border border-brand-border">
-                        <h4 class="font-heading font-bold text-slate-900 uppercase mb-1">Crate Training</h4>
-                        <p>Jackie is crate trained. Jackie currently settles when left alone in under 20 minutes. She has a medium sized (open door) crate she comfortably settles and sleeps in of her own accord.</p>
-                    </div>
-
-                    <div class="p-4 bg-slate-50 rounded-2xl border border-brand-border">
-                        <h4 class="font-heading font-bold text-slate-900 uppercase mb-1">Mouth Control & Socialization</h4>
-                        <p>Jackie is learning to avoid mouthing or nipping when overly excited or aroused. Her pro-bono trainer and foster mom are confident she can continue to safely play with others in any family willing to maintain her training consistently.</p>
-                    </div>
-
-                    <div class="p-4 bg-slate-50 rounded-2xl border border-brand-border">
-                        <h4 class="font-heading font-bold text-slate-900 uppercase mb-1">Outdoor Manners & Street Safety</h4>
-                        <p>Jackie is learning to pay attention to her name while outdoors, she occasionally pulls but walks well with other dogs. She, like most dogs, will try to seek street trash snacks—<strong class="text-slate-900">beware chicken bones!</strong></p>
-                    </div>
-
-                    <div class="p-4 bg-slate-50 rounded-2xl border border-brand-border">
-                        <h4 class="font-heading font-bold text-slate-900 uppercase mb-1">Handling & Touch</h4>
-                        <p>Jackie welcomes all physical touch. Harnessing her, giving her meds or removing items from her mouth is of no concern.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="support" class="bg-white border border-brand-border rounded-3xl p-6 sm:p-8 space-y-6 shadow-md">
-                <div class="flex items-center gap-3">
-                    <div class="w-3 h-8 bg-brand-pink rounded-full"></div>
-                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight">Supports for Jackie’s Rehoming</h2>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-brand-border space-y-2">
-                        <span class="text-2xl">🎓</span>
-                        <h3 class="font-heading font-bold text-slate-900 uppercase">Pro-Bono Dog Trainer</h3>
-                        <p class="text-sm text-slate-700">
-                            Jackie has a local <strong class="text-brand-pink">Harlem dog trainer</strong> willing to continue working with her and her new family pro-bono! More info available in the final round of the adoption process.
-                        </p>
-                    </div>
-
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-brand-border space-y-2">
-                        <span class="text-2xl">🎁</span>
-                        <h3 class="font-heading font-bold text-slate-900 uppercase">Starter Supplies Included</h3>
-                        <p class="text-sm text-slate-700">
-                            Jackie’s foster will provide the <strong class="text-brand-pink">first 25lb bag of prescription diet free</strong> as well as any of Jackie’s belongings her forever family may want.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-r from-pink-500 to-rose-500 p-6 rounded-2xl text-center text-white font-heading font-black shadow-lg">
-                    <p class="text-xs uppercase tracking-widest text-white/80 font-extrabold">Adoption Benefit</p>
-                    <p class="text-2xl sm:text-4xl tracking-tight uppercase mt-1">Jackie Has NO ADOPTION FEE!</p>
-                </div>
-            </section>
-
-            <section id="home-pref" class="bg-white border border-brand-border rounded-3xl p-6 sm:p-8 space-y-6 shadow-md">
-                <div class="flex items-center gap-3">
-                    <div class="w-3 h-8 bg-brand-pink rounded-full"></div>
-                    <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight">Forever Home Preferences</h2>
-                </div>
-
-                <div class="space-y-3">
-                    <div class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl border border-brand-border">
-                        <span class="text-brand-pink text-xl">💵</span>
-                        <p class="text-sm sm:text-base text-slate-700">
-                            All applicants should have a <strong class="text-brand-pink">monthly budget of at least $200</strong> for prescription diet and allergy medications alone.
-                        </p>
-                    </div>
-                    <div class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl border border-brand-border">
-                        <span class="text-brand-pink text-xl">🐕</span>
-                        <p class="text-sm sm:text-base text-slate-700">
-                            Experience with <strong>Bully or high-energy breeds</strong> is encouraged!
-                        </p>
-                    </div>
-                    <div class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl border border-brand-border">
-                        <span class="text-brand-pink text-xl">🤝</span>
-                        <p class="text-sm sm:text-base text-slate-700">
-                            Experience or investment in <strong>building bonds and routines</strong> through training is encouraged!
-                        </p>
-                    </div>
-                </div>
-
-                <div class="pt-6 text-center">
-                    <button onclick="openFormModal()" 
-                            class="w-full sm:w-auto bg-brand-pink hover:bg-brand-pinkHover text-white font-heading font-black text-lg uppercase px-10 py-4 rounded-2xl shadow-xl transition transform hover:scale-105 active:scale-95 inline-flex items-center justify-center gap-3">
-                        <span>Apply To Adopt Jackie</span>
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </button>
-                </div>
-            </section>
-
-        </main>
-
-        <footer class="text-center py-8 text-xs text-gray-500 border-t border-brand-border max-w-4xl mx-auto px-4">
-            <p>Adopt Jackie Site • Harlem, NYC • All Rights Reserved</p>
-        </footer>
-    </div>
-
-    <div id="application-modal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-md hidden overflow-y-auto p-4 sm:p-6 transition-opacity">
-        <div class="max-w-2xl mx-auto bg-white border border-brand-border rounded-3xl p-6 sm:p-8 shadow-2xl relative my-8">
-            
-            <button onclick="closeFormModal()" aria-label="Close modal" 
-                    class="absolute top-5 right-5 text-gray-400 hover:text-brand-pink text-2xl p-2 transition">
-                ✕
-            </button>
-
-            <div class="mb-6 border-b border-brand-border pb-4">
-                <span class="text-brand-pink font-heading font-bold text-xs uppercase tracking-widest">Adoption Survey</span>
-                <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900 uppercase mt-1">Application for Jackie</h2>
-                <p class="text-xs text-gray-500 mt-1">Please complete all fields below to apply to adopt Jackie.</p>
-            </div>
-
-            <form action="https://formspree.io/f/xnpqgbvg" method="POST" class="space-y-5 text-sm">
-                <div>
-                    <label class="block text-slate-700 font-bold mb-1.5" for="applicant_name">Applicant Name *</label>
-                    <input type="text" id="applicant_name" name="Applicant Name" required placeholder="Full Name" 
-                           class="w-full bg-slate-50 border border-brand-border rounded-xl p-3 text-slate-900 focus:outline-none focus:border-brand-pink">
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-slate-700 font-bold mb-1.5" for="applicant_email">Applicant Email *</label>
-                        <input type="email" id="applicant_email" name="Applicant Email" required placeholder="email@example.com" 
-                               class="w-full bg-slate-50 border border-brand-border rounded-xl p-3 text-slate-900 focus:outline-none focus:border-brand-pink">
-                    </div>
-                    <div>
-                        <label class="block text-slate-700 font-bold mb-1.5" for="applicant_phone">Applicant Phone Number *</label>
-                        <input type="tel" id="applicant_phone" name="Applicant Phone" required placeholder="(555) 000-0000" 
-                               class="w-full bg-slate-50 border border-brand-border rounded-xl p-3 text-slate-900 focus:outline-none focus:border-brand-pink">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-slate-700 font-bold mb-1.5" for="daily_routine">Daily routine: What are your normal work hours and daily activities? *</label>
-                    <textarea id="daily_routine" name="Daily Routine" rows="3" required placeholder="Describe your daily schedule..." 
-                              class="w-full bg-slate-50 border border-brand-border rounded-xl p-3 text-slate-900 focus:outline-none focus:border-brand-pink"></textarea>
-                </div>
-
-                <div>
-                    <label class="block text-slate-700 font-bold mb-1.5" for="alone_time">Alone time: How many hours a day will the dog be left alone in the house? *</label>
-                    <input type="text" id="alone_time" name="Alone Time" required placeholder="e.g. 4-6 hours" 
-                           class="w-full bg-slate-50 border border-brand-border rounded-xl p-3 text-slate-900 focus:outline-none focus:border-brand-pink">
-                </div>
-
-                <div>
-                    <label class="block text-slate-700 font-bold mb-1.5" for="exercise_plan">Exercise and training: What is your plan for exercising, socializing, and training the dog? *</label>
-                    <textarea id="exercise_plan" name="Exercise and Training Plan" rows="3" required placeholder="Share your plans..." 
-                              class="w-full bg-slate-50 border border-brand-border rounded-xl p-3 text-slate-900 focus:outline-none focus:border-brand-pink"></textarea>
-                </div>
-
-                <div>
-                    <label class="block text-slate-700 font-bold mb-1.5" for="previous_pets_select">Previous pets: What happened to your past pets? (Choose or Write-in) *</label>
-                    <div class="space-y-2">
-                        <select id="previous_pets_select" onchange="handlePreviousPets(this.value)" 
-                                class="w-full bg-slate-50 border border-brand-border rounded-xl p-3 text-slate-900 focus:outline-none focus:border-brand-pink">
-                            <option value="N/A - First time pet owner">N/A - First time pet owner</option>
-                            <option value="Write-in">Write in details below...</option>
-                        </select>
-                        <input type="text" id="previous_pets_detail" name="Previous Pets History" value="N/A - First time pet owner" required 
-                               class="w-full bg-slate-50 border border-brand-border rounded-xl p-3 text-slate-900 focus:outline-none focus:border-brand-pink">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-slate-700 font-bold mb-1.5" for="financial_status">Financial preparedness: Are you prepared for the costs of food, supplies, routine vet care, and emergency medical bills? *</label>
-                    <select id="financial_status" name="Financial Preparedness Status" onchange="handleFinancialChange(this.value)" required 
-                            class="w-full bg-slate-50 border border-brand-border rounded-xl p-3 text-slate-900 focus:outline-none focus:border-brand-pink">
-                        <option value="">-- Select Option --</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                        <option value="Maybe">Maybe</option>
-                    </select>
-
-                    <div id="field-financial-yes" class="hidden mt-3 p-3 bg-pink-50 border-l-4 border-brand-pink rounded-r-xl space-y-1.5">
-                        <label class="block text-slate-700 text-xs font-bold" for="monthly_budget_input">What is your monthly budget for the dog? *</label>
-                        <input type="text" id="monthly_budget_input" name="Monthly Budget (If Yes)" placeholder="e.g. $250 - $300 / month" 
-                               class="w-full bg-white border border-brand-border rounded-lg p-2.5 text-slate-900 focus:outline-none focus:border-brand-pink">
-                    </div>
-
-                    <div id="field-financial-maybe" class="hidden mt-3 p-3 bg-pink-50 border-l-4 border-brand-pink rounded-r-xl space-y-1.5">
-                        <label class="block text-slate-700 text-xs font-bold" for="financial_explanation_input">Please provide an explanation: *</label>
-                        <textarea id="financial_explanation_input" name="Financial Explanation (If Maybe)" rows="2" placeholder="Explain your situation..." 
-                                  class="w-full bg-white border border-brand-border rounded-lg p-2.5 text-slate-900 focus:outline-none focus:border-brand-pink"></textarea>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-slate-700 font-bold mb-1.5" for="behavioral_challenges">Behavioral challenges: How would you handle common challenges like house-training accidents, chewing, or shedding? *</label>
-                    <textarea id="behavioral_challenges" name="Handling Behavioral Challenges" rows="3" required placeholder="Your approach to training and patience..." 
-                              class="w-full bg-slate-50 border border-brand-border rounded-xl p-3 text-slate-900 focus:outline-none focus:border-brand-pink"></textarea>
-                </div>
-
-                <div>
-                    <label class="block text-slate-700 font-bold mb-1.5" for="people_at_home">People at home: Who lives in your home, including roommates and family members? *</label>
-                    <input type="text" id="people_at_home" name="People at Home" required placeholder="e.g. Spouse and 1 roommate" 
-                           class="w-full bg-slate-50 border border-brand-border rounded-xl p-3 text-slate-900 focus:outline-none focus:border-brand-pink">
-                </div>
-
-                <div>
-                    <label class="block text-slate-700 font-bold mb-1.5" for="children_info">Children: Are there children living with you or visiting frequently, and what are their ages? *</label>
-                    <input type="text" id="children_info" name="Children Info" required placeholder="e.g. No children or 2 kids (ages 8 and 12)" 
-                           class="w-full bg-slate-50 border border-brand-border rounded-xl p-3 text-slate-900 focus:outline-none focus:border-brand-pink">
-                </div>
-
-                <div>
-                    <label class="block text-slate-700 font-bold mb-1.5" for="other_pets">Other pets: Do you currently own any dogs, cats, or other animals? *</label>
-                    <input type="text" id="other_pets" name="Other Current Pets" required placeholder="e.g. 1 small cat (4 yrs)" 
-                           class="w-full bg-slate-50 border border-brand-border rounded-xl p-3 text-slate-900 focus:outline-none focus:border-brand-pink">
-                </div>
-
-                <div>
-                    <label class="block text-slate-700 font-bold mb-1.5" for="lease_restrictions">If a renter, do you have any pet restrictions in your lease?</label>
-                    <input type="text" id="lease_restrictions" name="Lease Restrictions" placeholder="e.g. No weight limit, pet deposit paid" 
-                           class="w-full bg-slate-50 border border-brand-border rounded-xl p-3 text-slate-900 focus:outline-none focus:border-brand-pink">
-                </div>
-
-                <div>
-                    <label class="block text-slate-700 font-bold mb-1.5" for="comments_questions">Do you have any other comments or any questions?</label>
-                    <textarea id="comments_questions" name="Comments and Questions" rows="3" placeholder="Any questions for Jackie's foster mom?" 
-                              class="w-full bg-slate-50 border border-brand-border rounded-xl p-3 text-slate-900 focus:outline-none focus:border-brand-pink"></textarea>
-                </div>
-
-                <button type="submit" 
-                        class="w-full bg-brand-pink hover:bg-brand-pinkHover text-white font-heading font-black text-base uppercase py-4 rounded-xl shadow-lg transition transform hover:scale-[1.01] active:scale-95">
-                    Submit Application
-                </button>
-            </form>
+      <div class="card">
+        <img src="https://picsum.photos/600/400?random=1" alt="Placeholder graphic">
+        <div class="card-body">
+          <h3>Secondary Feature</h3>
+          <p>Fully scalable card container designed to adjust automatically across modern screens.</p>
         </div>
-    </div>
+      </div>
+    </section>
+  </main>
 
-    <script>
-        // Media Carousel State Logic
-        let currentSlideIndex = 0;
-        const carouselTrack = document.getElementById('carousel-track');
-        const dots = document.querySelectorAll('.slide-dot');
-        const totalSlides = 9; // 7 images + 2 videos
+  <footer>
+    <p>&copy; 2026 BrandName. All rights reserved.</p>
+  </footer>
 
-        function updateCarousel() {
-            carouselTrack.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
-            dots.forEach((dot, idx) => {
-                if (idx === currentSlideIndex) {
-                    dot.classList.add('bg-brand-pink');
-                    dot.classList.remove('bg-white/40');
-                } else {
-                    dot.classList.remove('bg-brand-pink');
-                    dot.classList.add('bg-white/40');
-                }
-            });
-
-            applyBestContrastSubtitle();
-        }
-
-        // Returns the currently visible slide's <img> or <video> element
-        function getActiveMediaElement() {
-            const slides = carouselTrack.children;
-            const activeSlide = slides[currentSlideIndex];
-            if (!activeSlide) return null;
-            return activeSlide.querySelector('img, video');
-        }
-
-        // Samples the brightness of the region behind the title/subtitle on the
-        // currently active slide's image or video, then sets the subtitle color
-        // (light or dark) for the best contrast against that specific media.
-        function applyBestContrastSubtitle() {
-            const heroSubtitle = document.getElementById('hero-subtitle');
-            if (!heroSubtitle) return;
-
-            const applyLight = () => {
-                heroSubtitle.style.color = '#f1f5f9';
-                heroSubtitle.style.textShadow = '0 2px 8px rgba(15,23,42,0.9), 0 1px 3px rgba(15,23,42,0.95)';
-            };
-            const applyDark = () => {
-                heroSubtitle.style.color = '#0f172a';
-                heroSubtitle.style.textShadow = '0 2px 8px rgba(255,255,255,0.85), 0 1px 3px rgba(255,255,255,0.9)';
-            };
-
-            const media = getActiveMediaElement();
-            if (!media) { applyLight(); return; }
-
-            const sample = () => {
-                try {
-                    let sw, sh;
-                    if (media.tagName === 'IMG') {
-                        sw = media.naturalWidth;
-                        sh = media.naturalHeight;
-                    } else {
-                        sw = media.videoWidth;
-                        sh = media.videoHeight;
-                    }
-                    if (!sw || !sh) { applyLight(); return; }
-
-                    const sampleSize = 24;
-                    const canvas = document.createElement('canvas');
-                    canvas.width = sampleSize;
-                    canvas.height = sampleSize;
-                    const ctx = canvas.getContext('2d');
-
-                    // Only sample the top portion of the media, since that's the
-                    // region the title & subtitle actually sit on top of.
-                    const sourceHeight = sh * 0.35;
-                    ctx.drawImage(media, 0, 0, sw, sourceHeight, 0, 0, sampleSize, sampleSize);
-
-                    const { data } = ctx.getImageData(0, 0, sampleSize, sampleSize);
-                    let total = 0;
-                    const count = sampleSize * sampleSize;
-                    for (let i = 0; i < data.length; i += 4) {
-                        total += 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
-                    }
-                    const avgLuminance = total / count; // 0 (black) - 255 (white)
-
-                    if (avgLuminance > 150) {
-                        applyDark();
-                    } else {
-                        applyLight();
-                    }
-                } catch (err) {
-                    // Canvas read blocked (e.g. cross-origin media) - fall back safely
-                    applyLight();
-                }
-            };
-
-            if (media.tagName === 'IMG') {
-                if (media.complete && media.naturalWidth > 0) {
-                    sample();
-                } else {
-                    media.addEventListener('load', sample, { once: true });
-                }
-            } else if (media.tagName === 'VIDEO') {
-                if (media.readyState >= 2) {
-                    sample();
-                    // Re-sample shortly after in case the first frame wasn't representative
-                    setTimeout(sample, 500);
-                } else {
-                    media.addEventListener('loadeddata', sample, { once: true });
-                }
-            }
-        }
-
-        function nextSlide() {
-            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
-            updateCarousel();
-        }
-
-        function prevSlide() {
-            currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-        }
-
-        function goToSlide(index) {
-            currentSlideIndex = index;
-            updateCarousel();
-        }
-
-        // Set initial subtitle contrast for the first slide, then keep it fresh
-        // on every subsequent slide change via updateCarousel() above.
-        applyBestContrastSubtitle();
-
-        // Auto transition every 6 seconds
-        setInterval(nextSlide, 6000);
-
-        // Preview Mode Toggle (Desktop vs Mobile Frame)
-        function setPreviewMode(mode) {
-            const container = document.getElementById('app-container');
-            const btnDesktop = document.getElementById('btn-desktop');
-            const btnMobile = document.getElementById('btn-mobile');
-
-            if (mode === 'mobile') {
-                container.classList.add('view-mobile');
-                btnMobile.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all bg-brand-pink text-white shadow';
-                btnDesktop.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all text-gray-500 hover:text-slate-900';
-            } else {
-                container.classList.remove('view-mobile');
-                btnDesktop.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all bg-brand-pink text-white shadow';
-                btnMobile.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all text-gray-500 hover:text-slate-900';
-            }
-        }
-    </script>
-
-    <script>
-        // Modal Controls
-        function openFormModal() {
-            document.getElementById('application-modal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeFormModal() {
-            document.getElementById('application-modal').classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Dynamic Form Logic for Previous Pets
-        function handlePreviousPets(value) {
-            const detailInput = document.getElementById('previous_pets_detail');
-            if (value === 'Write-in') {
-                detailInput.value = '';
-                detailInput.placeholder = 'Please explain what happened to past pets...';
-                detailInput.focus();
-            } else {
-                detailInput.value = value;
-            }
-        }
-
-        // Dynamic Form Logic for Financial Preparedness
-        function handleFinancialChange(value) {
-            const yesField = document.getElementById('field-financial-yes');
-            const maybeField = document.getElementById('field-financial-maybe');
-            const budgetInput = document.getElementById('monthly_budget_input');
-            const explainInput = document.getElementById('financial_explanation_input');
-
-            yesField.classList.add('hidden');
-            maybeField.classList.add('hidden');
-            budgetInput.removeAttribute('required');
-            explainInput.removeAttribute('required');
-
-            if (value === 'Yes') {
-                yesField.classList.remove('hidden');
-                budgetInput.setAttribute('required', 'true');
-            } else if (value === 'Maybe') {
-                maybeField.classList.remove('hidden');
-                explainInput.setAttribute('required', 'true');
-            }
-        }
-    </script>
+  <script>
+    const themeBtn = document.getElementById('themeBtn');
+    
+    themeBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'light') {
+        document.documentElement.removeAttribute('data-theme');
+        themeBtn.textContent = 'Toggle Light Mode';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeBtn.textContent = 'Toggle Dark Mode';
+      }
+    });
+  </script>
 </body>
 </html>
